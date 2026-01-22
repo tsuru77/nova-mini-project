@@ -17,14 +17,20 @@ cd sdn_qos
 
 # 2. Installer les dépendances système
 sudo apt update
-sudo apt install -y mininet openvswitch-switch python3-pip iperf3
+sudo apt install -y mininet openvswitch-switch python3-pip python3-venv iperf3
 
-# 3. Installer Ryu et dépendances Python
-pip3 install ryu eventlet==0.30.2
+# 3. Créer et activer un environnement virtuel
+python3 -m venv venv
+source venv/bin/activate
 
-# 4. Vérifier l'installation
+# 4. Installer Ryu et dépendances Python
+pip install ryu eventlet==0.30.2
+
+# 5. Vérifier l'installation
 sudo mn --test pingall
 ```
+
+> ⚠️ **Important**: Pense à activer le venv (`source venv/bin/activate`) avant de lancer Ryu.
 
 ## 📁 Structure du Projet
 

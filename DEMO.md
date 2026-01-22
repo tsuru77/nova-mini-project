@@ -18,6 +18,7 @@ sudo systemctl start openvswitch-switch
 **Terminal 1:**
 ```bash
 cd ~/sdn_qos
+source venv/bin/activate
 ryu-manager --verbose ryu_qos_apps/rest_conf_switch.py \
   ryu_qos_apps/qos_simple_switch_13.py ryu_qos_apps/rest_qos.py
 ```
