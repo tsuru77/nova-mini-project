@@ -58,16 +58,22 @@ echo ""
 echo "  Rule: UDP traffic to 10.0.0.1 port 5002 -> Queue 1 (Premium)"
 echo ""
 
+
 s1_flow_URL="http://localhost:8080/qos/rules/0000000000000001"
 s1r1_flow_URL="http://localhost:8080/qos/rules/0000000000000011"
 s1r4_flow_URL="http://localhost:8080/qos/rules/0000000000000041"
 
+# 1. Premium Rule (Queue 1)
 curl -s -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst": "5002"}, "actions":{"queue": "1"}}' "$s1_flow_URL" > /dev/null
-echo -e "  Switch s1:   ${GREEN}Rule installed${NC}"
 curl -s -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst": "5002"}, "actions":{"queue": "1"}}' "$s1r1_flow_URL" > /dev/null
-echo -e "  Switch s1r1: ${GREEN}Rule installed${NC}"
 curl -s -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst": "5002"}, "actions":{"queue": "1"}}' "$s1r4_flow_URL" > /dev/null
-echo -e "  Switch s1r4: ${GREEN}Rule installed${NC}"
+echo -e "  Premium (Port 5002) -> Queue 1: ${GREEN}Installed${NC}"
+
+# 2. Best Effort Rule (Queue 0)
+curl -s -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst": "5001"}, "actions":{"queue": "0"}}' "$s1_flow_URL" > /dev/null
+curl -s -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst": "5001"}, "actions":{"queue": "0"}}' "$s1r1_flow_URL" > /dev/null
+curl -s -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst": "5001"}, "actions":{"queue": "0"}}' "$s1r4_flow_URL" > /dev/null
+echo -e "  Best Effort (Port 5001) -> Queue 0: ${GREEN}Installed${NC}"
 echo ""
 
 # ============================================

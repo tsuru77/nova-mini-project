@@ -50,10 +50,12 @@ mininet> sh ovs-vsctl set-manager ptcp:6632
 **Terminal 3:**
 ```bash
 cd ~/sdn_qos/scripts
-./perflow_qos_script.sh
+./demo_script.sh
 ```
 
-✅ **Succès**: Tous les "OK" s'affichent
+✅ **Succès**: Tu dois voir :
+- `Premium (Port 5002) -> Queue 1: Installed`
+- `Best Effort (Port 5001) -> Queue 0: Installed`
 
 ---
 
