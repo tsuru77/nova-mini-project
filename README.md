@@ -1,78 +1,83 @@
-## QoS Management Solution in Software Defined Networking using Ryu Controller
+# SDN QoS - Quality of Service with Ryu Controller
 
-#### This is my master's thesis project repository, which turned into a published paper at (IMPCS). <sub> _IMPCS is a persian journal published by Islamic Azad University of Zanjan_ </sub>
+Gestion de la Qualité de Service (QoS) dans un réseau SDN utilisant le contrôleur Ryu et Mininet.
 
-> visit: https://impcs.zanjan.iau.ir/article_682091.html?lang=en 
+## 📋 Prérequis
 
-**Introduction**
+- **OS**: Ubuntu 20.04+ (VM recommandée)
+- **RAM**: 4 Go minimum
+- **Droits**: sudo requis
 
-Enterprise networks are increasingly becoming larger and more dynamic due to vast deployments of virtualization technologies. Consequently, the explosion of new network applications and services has strained the capabilities of traditional networking architecture in terms of scalability, agility, and efficient traffic management. SDN (Software Defined Networking) is a novel approach to build networks in which control logic is decoupled from data forwarding in order to enable programmability and ease of configuration across the entire network. The centralized control in SDN provides a global view of the entire network resources and their performance which enables the innovation of new service models. This paper demonstrates the implementation of SDN in a sample data center network topology using Mininet and the RYU controller, followed by employing policy-based network management and a differentiated service mechanism for guaranteeing the QoS for different classes of traffic. The proposed framework is a foundation to develop an enterprise-level network control and management product. 
-
-The approach of this paper is an implementation of a software-based architecture in the topology of a data center. It manages and guarantees the quality of service, using network policy-oriented management and service quality methods. The presented framework is an expandable infrastructure to solve the challenge of dynamic and agile management in the network of data centers and virtualization and cloud processing service providers.
-
-## RYU architecture
-![alt_text](https://github.com/amirashoori7/sdn_qos/blob/f6d57c8d29c403a016fb196da2a3b59768ccbc3a/demo_results/ryu_arch.jpg)
-
-## Test Case 1 -Perflow QoS 
-![alt_text](https://github.com/amirashoori7/sdn_qos/blob/d6a423297848a2b4a2797cbabd6c4de2549bfbe5/demo_results/perflow%20results.jpg)
-
-## Test Case 2 -Diffserv QoS
-![alt_text](https://github.com/amirashoori7/sdn_qos/blob/d6a423297848a2b4a2797cbabd6c4de2549bfbe5/demo_results/diffserv%20results.jpg)
-
-## Further work: developing flow manager UI
-![alt_text](https://github.com/amirashoori7/sdn_qos/blob/6fc9763209a50fdb0faadc1187d42617a597dd90/demo_results/flowmgr.jpg)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## Getting started
-create python virtual environment
+## 🚀 Installation
 
 ```bash
-pip install virtualenv
-virtualenv --python=python3 envname
-cd envname
-source bin/activate
+# 1. Cloner le repo
+git clone <URL_DU_REPO>
+cd sdn_qos
+
+# 2. Installer les dépendances système
+sudo apt update
+sudo apt install -y mininet openvswitch-switch python3-pip iperf3
+
+# 3. Installer Ryu et dépendances Python
+pip3 install ryu eventlet==0.30.2
+
+# 4. Vérifier l'installation
+sudo mn --test pingall
 ```
 
-## install mininet
+## 📁 Structure du Projet
+
+```
+sdn_qos/
+├── ryu_qos_apps/          # Applications Ryu (contrôleur)
+│   ├── qos_simple_switch_13.py   # Switch L2 avec support QoS
+│   ├── rest_qos.py               # API REST pour QoS
+│   └── rest_conf_switch.py       # Configuration switches
+├── topology/              # Topologies Mininet
+│   └── datacenterBasic.py        # Topologie datacenter (5 switches, 3+ hosts)
+├── scripts/               # Scripts de configuration QoS
+│   ├── perflow_qos_script.sh     # QoS Per-Flow
+│   └── diffserv_qos_script.sh    # QoS DiffServ
+└── DEMO.md                # Guide de démonstration
+```
+
+## ⚡ Démarrage Rapide
+
+### Terminal 1 - Lancer Ryu
 ```bash
-git clone git://github.com/mininet/mininet
-mininet/util/install.sh -a
+cd sdn_qos
+ryu-manager --verbose ryu_qos_apps/rest_conf_switch.py \
+  ryu_qos_apps/qos_simple_switch_13.py ryu_qos_apps/rest_qos.py
 ```
 
-## install Ryu and its requirements
+### Terminal 2 - Lancer Mininet
 ```bash
-pip install eventlet msgpack-python netaddr oslo.config routes six webob
-apt install libxml2-dev libxslt1-dev libffi-dev
-git clone https://github.com/faucetsdn/ryu.git
-cd ryu/
-pip3 install .
+cd sdn_qos
+sudo mn --custom topology/datacenterBasic.py --topo dcbasic \
+  --controller remote --switch ovs,protocols=OpenFlow13
 ```
-Also in order to implement qos you need to copy qos_rest_router.py
-and qos_simple_switch_13.py from ryu_qos_apps/ to ryu/ryu/app directory
 
-## install iperf3
+### Terminal 3 - Configurer QoS
 ```bash
-apt -y install iperf3
+cd sdn_qos/scripts
+./perflow_qos_script.sh
 ```
 
-## install D-ITG
-```bash
-wget http://www.grid.unina.it/software/ITG/codice/D-ITG-2.8.1-r1023-src.zip
-cd D-ITG-2.8.1-r1023/src/
-make
-```
+## 📖 Documentation
 
-## License
+- **[DEMO.md](DEMO.md)** - Guide complet pour la démonstration
+- **[SDN_QOS_COMPLETE_GUIDE.md](SDN_QOS_COMPLETE_GUIDE.md)** - Explication détaillée des concepts
 
-Open Source Software.
+## 🎯 Fonctionnalités
 
-<!-- CONTACT -->
-## Contact
+- **Per-Flow QoS**: Allocation de bande passante par flux (IP + port)
+- **DiffServ QoS**: Classification par marquage DSCP
+- **Topologie Datacenter**: 5 switches, 3+ hosts configurables
+- **API REST**: Configuration dynamique via HTTP
 
-Amir Ashoori - a.ashoori7@gmail.com
+## 📊 Résultats Attendus
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+| Méthode | Queue 0 (Best Effort) | Queue 1 (Premium) |
+|---------|----------------------|-------------------|
+| Per-Flow | ~500 Kbps (max) | ~800 Kbps (garanti) |
