@@ -24,7 +24,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 # 4. Installer Ryu et dépendances Python
-pip install ryu eventlet==0.30.2
+pip install ryu eventlet==0.30.2 ovs==2.12.0
 
 # 5. Vérifier l'installation
 sudo mn --test pingall
