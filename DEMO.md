@@ -19,15 +19,27 @@ sudo systemctl start openvswitch-switch
 ```bash
 cd ~/sdn_qos
 source venv/bin/activate
+# ryu_qos_apps/qos_simple_switch_13.py ryu_qos_apps/rest_qos.py \
+# ryu_qos_apps/qos_rest_router.py\
 ryu-manager --verbose ryu_qos_apps/rest_conf_switch.py \
   ryu_qos_apps/qos_simple_switch_13.py ryu_qos_apps/rest_qos.py \
-  ryu_qos_apps/qos_rest_router.py ryu_qos_apps/simple_switch_13.py \
   flowmanager/webapi.py flowmanager/flow_monitor.py flowmanager/flowmanager.py
 ```
+
+ryu-manager --verbose ryu_qos_apps/rest_conf_switch.py \
+  flowmanager/webapi.py flowmanager/flow_monitor.py flowmanager/flowmanager.py
 
 ✅ **Succès**: Tu vois `loading app ryu_qos_apps/...` sans erreur
 
 ---
+
+## Clean Mininet
+sudo mn --clean
+
+## eval metric on mininet
+```bash
+mininet>py exec(open('evaluate_metrics.py').read(), {'net': net, '__builtins__': __builtins__})
+̀```
 
 ## Test
 ryu-manager --verbose flowmanager/webapi.py \
@@ -57,7 +69,13 @@ mininet> sh ovs-vsctl set-manager ptcp:6632
 ```bash
 cd ~/sdn_qos/scripts
 ./demo_script.sh
+./add_qos_rules.sh
 ```
+
+## Étape 4 : eval
+```bash
+python
+`̀``
 
 ✅ **Succès**: Tu dois voir :
 - `Premium (Port 5002) -> Queue 1: Installed`

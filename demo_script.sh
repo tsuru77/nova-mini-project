@@ -76,6 +76,12 @@ curl -s -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst"
 echo -e "  Best Effort (Port 5001) -> Queue 0: ${GREEN}Installed${NC}"
 echo ""
 
+
+# règle générale pour router le traffic de s1r1 pour tous les hotes
+# curl -s -X POST -d '{"match": {"dl_type": 0x0800, "nw_dst": "10.0.0.1"},"actions": {"output": "1"}}' "$s1_flow_URL" > /dev/null
+# curl -s -X POST -d '{"match": {"dl_type": 0x0800, "nw_dst": "10.0.0.1"},"actions": {"output": "1"}}' "$s1r4_flow_URL" > /dev/null
+
+
 # ============================================
 echo -e "${GREEN}============================================${NC}"
 echo -e "${GREEN}   QoS Configuration Complete!             ${NC}"

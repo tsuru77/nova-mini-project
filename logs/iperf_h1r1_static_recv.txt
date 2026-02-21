@@ -1,0 +1,40 @@
+------------------------------------------------------------
+Server listening on UDP port 5001
+UDP buffer size:  208 KByte (default)
+------------------------------------------------------------
+[  1] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  1] 0.0000-15.8847 sec   286 KBytes   147 Kbits/sec  44.734 ms 0/199 (0%)
+[  3] WARNING: ack of last datagram failed.
+[  2] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  2] 0.0000-0.0133 sec  2.87 KBytes  1.77 Mbits/sec   0.831 ms 208/210 (99%)
+[  4] WARNING: ack of last datagram failed.
+[  3] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  3] 0.0000-0.0124 sec  2.87 KBytes  1.89 Mbits/sec   0.776 ms 219/221 (99%)
+[  3] WARNING: ack of last datagram failed.
+[  4] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  4] 0.0000-0.0136 sec  2.87 KBytes  1.72 Mbits/sec   0.852 ms 230/232 (99%)
+[  4] WARNING: ack of last datagram failed.
+[  5] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  5] 0.0000-0.0153 sec  2.87 KBytes  1.54 Mbits/sec   0.954 ms 241/243 (99%)
+[  3] WARNING: ack of last datagram failed.
+[  6] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  6] 0.0000-0.0134 sec  2.87 KBytes  1.76 Mbits/sec   0.835 ms 252/254 (99%)
+[  4] WARNING: ack of last datagram failed.
+[  7] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  7] 0.0000-0.0304 sec  2.87 KBytes   774 Kbits/sec   1.899 ms 263/265 (99%)
+[  3] WARNING: ack of last datagram failed.
+[  8] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  8] 0.0000-0.0256 sec  2.87 KBytes   919 Kbits/sec   1.599 ms 274/276 (99%)
+[  4] WARNING: ack of last datagram failed.
+[  9] local 10.0.0.1 port 5001 connected with 10.0.0.8 port 53287
+[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+[  9] 0.0000-0.1398 sec  2.87 KBytes   168 Kbits/sec   8.739 ms 285/287 (99%)
+[  3] WARNING: ack of last datagram failed.
